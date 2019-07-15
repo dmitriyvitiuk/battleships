@@ -17,7 +17,12 @@
     left: 50%;
 }
 
+.hidden-bomb {
+    visibility: hidden; 
+}
+
 .animate-bomb {
+    visibility: visible;
     animation-duration: 0.8s;
     animation-name: slidein;
     /* animation-iteration-count: 4;  */
@@ -37,6 +42,7 @@
     }
     to {
         top: 500px;
+        visibility: hidden;
     }
 
   }
