@@ -19,6 +19,8 @@
 
 .hidden-bomb {
     visibility: hidden; 
+    color: blue; 
+    /*test*/
 }
 
 .animate-bomb {
