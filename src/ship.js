@@ -1,45 +1,48 @@
 
-var block = document.getElementById("box");
-var bomb = document.getElementById("bomb_div");
-var step = 20;
+var block = document.getElementById("box_div");
+
+var step = 30;
 var currentX = 0;
 var currentY = 0;
 
-// function ShowDiv(){
-// document.getElementById("bomb_div").style.display = "block";
-// }
 
-document.onkeydown = function(event){
-//console.log(event)
-    if(event.key == "ArrowRight") {
-        currentX = currentX + step;
-        block.style.left = currentX +  "px"
+
+document.onkeydown = function (event) {
+    
+    if (event.key == "ArrowRight") {
+        moveShip(step)
     }
-    if(event.key == "ArrowDown") {
-        currentY = currentY + step;
-        block.style.top = currentY + "px"
-    }
-    if(event.key == "ArrowLeft") {
-        currentX -= step;
-        block.style.left = currentX + "px"
-    }
-    if (event.key == "ArrowUp") {
-        currentY -= step;
-        block.style.top = currentY + 'px'
+    if (event.key == "ArrowLeft") {
+        moveShip(-step)
     }
     if (event.code == "Space") {
-        console.log(event.key);
-        bomb.className = 'animate-bomb';
-        createBomb(1,1);
+        shut();
     }
-      //console.log("["+event.key+"]" + " -> currentX = " + currentX +";  currentY = " + currentY)
-    }
+}
 
 
+function moveShip(newStep) {
+    currentX = currentX + newStep;
+    block.style.left = currentX + "px"
+}
 
-    function createBomb(bombX, bombY){
-        var newDiv = document.createElement("div");
-            newDiv.className = '';
-            newDiv.innerHTML = ""
-            document.body.appendChild(newDiv);
-    }
+function shut()
+{
+    var b = createBomb();
+        b.className = 'animate-bomb';
+}
+
+function createBomb() {
+    var bomb_div = document.createElement("div");
+    var bomb_img = document.createElement("img");
+        bomb_img.setAttribute('src', 'bomb.png');
+        bomb_img.setAttribute('height', '30px');
+        bomb_img.setAttribute('width', '30px');
+        bomb_div.appendChild(bomb_img);
+        block.appendChild(bomb_div);
+      
+
+
+        return bomb_div;
+}
+moveShip(document.body.clientWidth / 2 - block.clientWidth / 2)
